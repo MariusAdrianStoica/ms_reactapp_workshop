@@ -1,4 +1,4 @@
-import React from 'react';
+/*import React from 'react';
 
 const Student = (props) => {
 
@@ -23,3 +23,4 @@ const Student = (props) => {
 };
 
 export default Student;
+*/

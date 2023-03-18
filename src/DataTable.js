@@ -4,6 +4,9 @@ import Student from './Student';
 
 const DataTable = () => {
 
+    const [student, setStudent] = useState({id: "", firstname:"", lastname:"", age:"", birtthday:"", country: "", city: "" });
+    const[showStudentDetails, setShowStudentDetails] = useState(true);
+
     const [studentsList, setStudentsList] = useState([]);
     useEffect(()=>{
         const initialState = [ 
@@ -56,9 +59,20 @@ const DataTable = () => {
             </thead>   
         )
     }
-    const TableAction = ()=> {
+    const showDetails = (e) => {
+        return (
+            
+            setShowStudentDetails(true)
+        )
+    }
+
+
+    const TableAction = (props)=> {
+        // <button type='button' className="btn btn-primary">Hide</button>
         return(  
             <button type='button' className="btn btn-primary">Details</button>
+            
+
         );
         
     }
@@ -73,7 +87,7 @@ const DataTable = () => {
                             <td>{student.firstname}</td>
                             <td>{student.lastname}</td>
                             <td>{student.age}</td>
-                            <td><TableAction/></td>
+                            <td><TableAction onClick={showDetails}/></td>
                         </tr>
                     })
                 }
@@ -87,11 +101,33 @@ const DataTable = () => {
             <div>
                 <h4> Student List</h4>
             </div>
+            
               
         <table className ='table table-light table-striped'>
             <TableHeader/>
             <TableRow/>
         </table>
+
+        {showStudentDetails && (
+            <div className='card' >
+                <div className='card-header bg-info text-white'>Student Information</div>
+                <div className='card-body'>
+                    <div className='bm-3'>
+                        <h5><strong>country </strong><strong>city</strong></h5>
+                        <h6>Id: </h6>
+                        <h6>Name: </h6>
+                        <h6>Birthdate: </h6>
+                        <button type='button' className="btn btn-outline-primary">Hide</button>
+
+
+                        
+
+                    </div>
+                </div>
+            
+            </div>
+        )
+        }
         </div>
     );
 };
