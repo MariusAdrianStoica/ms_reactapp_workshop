@@ -1,15 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import Student from './Student';
-
 
 const DataTable = () => {
 
     const [student, setStudent] = useState({id: "", firstname:"", lastname:"", age:"", birtthday:"", country: "", city: "" });
-    const[showStudentDetails, setShowStudentDetails] = useState(true);
+    const[showStudentDetails, setShowStudentDetails] = useState(false);
 
     const [studentsList, setStudentsList] = useState([]);
     useEffect(()=>{
-        const initialState = [ 
+        const students = [ 
             { id: 1, 
             firstname: "Mehrdad",
             lastname: "Javan",
@@ -42,7 +40,7 @@ const DataTable = () => {
                 country: "TestLand",
                 city: "TestCity"
                 }];
-            setStudentsList(initialState);
+            setStudentsList(students);
 
     }, []);
 
@@ -59,22 +57,33 @@ const DataTable = () => {
             </thead>   
         )
     }
-    const showDetails = (e) => {
-        return (
-            
-            setShowStudentDetails(true)
-        )
-    }
+    
 
 
     const TableAction = (props)=> {
         // <button type='button' className="btn btn-primary">Hide</button>
         return(  
-            <button type='button' className="btn btn-primary">Details</button>
+            <button type='button' className="btn btn-primary" onClick={showDetails}>Details</button>
             
 
         );
         
+    }
+    const showDetails = (e) => {
+        return (
+            
+                
+                
+
+            setShowStudentDetails(true)
+        )
+    }
+
+    const HideDetails = (e) => {
+        return (
+            
+            setShowStudentDetails(false)
+        )
     }
 
     const TableRow = (props)=>{
@@ -87,7 +96,7 @@ const DataTable = () => {
                             <td>{student.firstname}</td>
                             <td>{student.lastname}</td>
                             <td>{student.age}</td>
-                            <td><TableAction onClick={showDetails}/></td>
+                            <td><TableAction /></td>
                         </tr>
                     })
                 }
@@ -115,13 +124,9 @@ const DataTable = () => {
                     <div className='bm-3'>
                         <h5><strong>country </strong><strong>city</strong></h5>
                         <h6>Id: </h6>
-                        <h6>Name: </h6>
+                        <h6>Name: {student.firstname}</h6>
                         <h6>Birthdate: </h6>
-                        <button type='button' className="btn btn-outline-primary">Hide</button>
-
-
-                        
-
+                        <button type='button' className="btn btn-outline-primary" onClick={HideDetails}>Hide</button>
                     </div>
                 </div>
             
@@ -131,5 +136,7 @@ const DataTable = () => {
         </div>
     );
 };
+
+
 
 export default DataTable;
